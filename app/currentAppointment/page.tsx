@@ -24,7 +24,7 @@ const CurrentAppointment = async () => {
               <Table.Cell>
                 <Link
                   href={`/currentAppointment/${patient.id}`}
-                  className="text-sky_500 hover:underline"
+                  className="text-sky-500 hover:underline"
                 >
                   {patient.name}
                 </Link>
