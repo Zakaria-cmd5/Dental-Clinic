@@ -10,5 +10,7 @@ export const createPatientScema = z.object({
     .string()
     .min(1, "Blood Group should be at least 1 letter")
     .max(2, "Blood Group should not be more than 2 letters"),
+  date: z.string().min(10, "Date field is required."),
+  time: z.string().min(1, "Time field is required."),
   reservationType: z.string().min(4, "Reservation field is required."),
 });
