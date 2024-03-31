@@ -9,3 +9,13 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Patients {
+  id              Int    @id @default(autoincrement())
+  name            String
+  phoneNumber     String
+  bloodGroup      String
+  date            String
+  time            String
+  reservationType String
+}
