@@ -44,6 +44,7 @@ const AppointmentPage = () => {
             setIsSubmiting(true);
             await axios.post("/api/appointment", data);
             router.push("/currentAppointment");
+            router.refresh();
           } catch (error) {
             setError("An unexpected error occurred.");
             setIsSubmiting(false);
