@@ -30,9 +30,9 @@ const Navbar = () => {
 
   const links = [
     { label: "Home", href: "/" },
-    { label: signinAndSignoutLabelSwitch, href: signinAndSignoutHrefSwitch },
     { label: "Appointment", href: "/appointment" },
     { label: "Current Appointment", href: "/currentAppointment" },
+    { label: signinAndSignoutLabelSwitch, href: signinAndSignoutHrefSwitch },
   ];
 
   return (
