@@ -1,7 +1,9 @@
+import authOption from "@/app/auth/authOption";
 import DeletePatientButton from "@/app/components/DeletePatientButton";
 import EditPatientButton from "@/app/components/EditPatientButton";
 import prisma from "@/prisma/client";
 import { Box, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -10,6 +12,7 @@ interface Props {
 }
 
 const PatientDetailPage = async ({ params }: Props) => {
+  const session = await getServerSession(authOption);
   const patient = await prisma.patients.findUnique({
     where: { id: parseInt(params.id) },
   });
@@ -26,9 +29,9 @@ const PatientDetailPage = async ({ params }: Props) => {
         <Text as="p">{patient.reservationType}</Text>
       </Box>
       <Box>
-        <Flex gap='2'>
-        <DeletePatientButton patientId={patient.id} />
-        <EditPatientButton reservationId={patient.id} />
+        <Flex gap="2">
+          <DeletePatientButton patientId={patient.id} />
+          <EditPatientButton reservationId={patient.id} />
         </Flex>
       </Box>
     </Grid>
