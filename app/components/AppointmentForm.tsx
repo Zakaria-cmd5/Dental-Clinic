@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/ErrorMessage";
 import Spinner from "../components/Spinner";
-import { createPatientScema } from "../createPatientScema";
+import { patientScema } from "../patientScema";
 import { Patients } from "@prisma/client";
 
 interface AppointmentFormData {
@@ -33,7 +33,7 @@ const AppointmentForm = ({ patient }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<AppointmentFormData>({
-    resolver: zodResolver(createPatientScema),
+    resolver: zodResolver(patientScema),
   });
   return (
     <Box className="max-w-xl">

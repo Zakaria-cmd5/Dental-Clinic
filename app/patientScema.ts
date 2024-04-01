@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const createPatientScema = z.object({
+export const patientScema = z.object({
   name: z.string().min(3, "Name should be more than 3 letters").max(255),
   phoneNumber: z
     .string()
