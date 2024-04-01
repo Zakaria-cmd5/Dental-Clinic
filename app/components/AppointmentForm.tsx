@@ -47,7 +47,9 @@ const AppointmentForm = ({ patient }: Props) => {
         onSubmit={handleSubmit(async (data) => {
           try {
             setIsSubmiting(true);
-            await axios.post("/api/appointment", data);
+            if (patient)
+              await axios.patch("/api/appointment/" + patient.id, data);
+            else await axios.post("/api/appointment", data);
             router.push("/currentAppointment");
             router.refresh();
           } catch (error) {
@@ -94,7 +96,7 @@ const AppointmentForm = ({ patient }: Props) => {
         <ErrorMessage>{errors.reservationType?.message}</ErrorMessage>
         {isSubmiting === false ? (
           <Button color="indigo" variant="soft">
-            Book an Appointment
+            {patient ? "Update patient" : "Book an Appointment"}
           </Button>
         ) : (
           <Spinner />
