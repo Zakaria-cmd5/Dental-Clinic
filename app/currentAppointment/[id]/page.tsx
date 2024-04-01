@@ -1,4 +1,5 @@
 import DeletePatientButton from "@/app/components/DeletePatientButton";
+import EditPatientButton from "@/app/components/EditPatientButton";
 import prisma from "@/prisma/client";
 import { Box, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
@@ -15,7 +16,7 @@ const PatientDetailPage = async ({ params }: Props) => {
 
   if (!patient) notFound();
   return (
-    <Grid columns={{ initial: "1", md: "2" }} gap="1">
+    <Grid columns={{ initial: "1", md: "2" }} gap="5">
       <Box>
         <Heading>{patient.name}</Heading>
         <Text as="p">{patient.phoneNumber}</Text>
@@ -25,7 +26,10 @@ const PatientDetailPage = async ({ params }: Props) => {
         <Text as="p">{patient.reservationType}</Text>
       </Box>
       <Box>
+        <Flex gap='2'>
         <DeletePatientButton patientId={patient.id} />
+        <EditPatientButton reservationId={patient.id} />
+        </Flex>
       </Box>
     </Grid>
   );
