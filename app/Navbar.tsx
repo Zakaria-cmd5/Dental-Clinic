@@ -9,13 +9,28 @@ import {
 import Link from "next/link";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { status, data: session } = useSession();
   const currentPath = usePathname();
+
+  let signinAndSignoutLabelSwitch =
+    status === "authenticated"
+      ? "Logout"
+      : status === "unauthenticated"
+      ? "Login"
+      : "";
+  let signinAndSignoutHrefSwitch =
+    status === "authenticated"
+      ? "/api/auth/signout"
+      : status === "unauthenticated"
+      ? "/api/auth/signin"
+      : "/";
 
   const links = [
     { label: "Home", href: "/" },
-    { label: "Sign Up", href: "/signup" },
+    { label: signinAndSignoutLabelSwitch, href: signinAndSignoutHrefSwitch },
     { label: "Appointment", href: "/appointment" },
     { label: "Current Appointment", href: "/currentAppointment" },
   ];
